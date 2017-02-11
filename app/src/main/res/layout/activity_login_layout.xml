@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/login_view"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_below="@+id/miaoshu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="3">
+
+        <TextView
+            android:id="@+id/weixinLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/weixinlogin"
+            android:drawableTop="@mipmap/ic_launcher"
+            android:gravity="center"/>
+        <TextView
+            android:id="@+id/qqLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/qqlogin"
+            android:drawableTop="@mipmap/ic_launcher"
+            android:gravity="center"/>
+        <TextView
+            android:id="@+id/weiboLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/weibologin"
+            android:drawableTop="@mipmap/ic_launcher"
+            android:gravity="center"/>
+    </com.zhy.autolayout.AutoLinearLayout>
+
+</com.zhy.autolayout.AutoLinearLayout>

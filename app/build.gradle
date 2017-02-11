@@ -1,0 +1,65 @@
+apply plugin: 'com.android.application'
+apply plugin: 'android-apt'
+android {
+    signingConfigs {
+        release {
+            keyAlias 'wwxtest'
+            keyPassword '111111'
+            storeFile file('F:/wwxtest.jks')
+            storePassword '111111'
+        }
+    }
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+    defaultConfig {
+        applicationId "com.wwx.study"
+        minSdkVersion 14
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        debug {
+            signingConfig signingConfigs.release
+            debuggable true
+            minifyEnabled false
+        }
+    }
+}
+
+def bakPath = file("${buildDir}/bakApk/")
+
+ext {
+    tinkerEnabled = true
+    //old apk file to build patch apk
+    tinkerOldApkPath = "${bakPath}/old.apk"
+    //proguard mapping file to build patch apk
+    tinkerApplyMappingPath = "${bakPath}/old-mapping.txt"
+}
+
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:25.1.1'
+    compile 'com.android.support:design:25.1.1'
+    testCompile 'junit:junit:4.12'
+    //tinker的核心库
+    compile 'com.tencent.tinker:tinker-android-lib:1.7.7'
+    //可选，用于生成application类
+    provided 'com.tencent.tinker:tinker-android-anno:1.7.7'
+    //butterknife
+    compile 'com.jakewharton:butterknife:8.4.0'
+    apt 'com.jakewharton:butterknife-compiler:8.4.0'
+    //屏幕适配
+    compile 'com.zhy:autolayout:1.4.5'
+
+}
