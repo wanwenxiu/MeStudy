@@ -5,35 +5,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="---------请选择登录方式---------"
+        android:gravity="center"
+        android:layout_margin="10px"/>
+
     <com.zhy.autolayout.AutoLinearLayout
         android:layout_below="@+id/miaoshu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="3">
+        android:weightSum="3"
+        >
 
-        <TextView
+        <ImageView
             android:id="@+id/weixinLogin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="150px"
+            android:layout_height="150px"
             android:layout_weight="1"
-            android:text="@string/weixinlogin"
-            android:drawableTop="@mipmap/ic_launcher"
+            android:src="@drawable/umeng_socialize_wechat"
             android:gravity="center"/>
-        <TextView
+        <ImageView
             android:id="@+id/qqLogin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="150px"
+            android:layout_height="150px"
             android:layout_weight="1"
-            android:text="@string/qqlogin"
-            android:drawableTop="@mipmap/ic_launcher"
+            android:src="@drawable/umeng_socialize_qq"
             android:gravity="center"/>
-        <TextView
+        <ImageView
             android:id="@+id/weiboLogin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="150px"
+            android:layout_height="150px"
             android:layout_weight="1"
-            android:text="@string/weibologin"
-            android:drawableTop="@mipmap/ic_launcher"
+            android:src="@drawable/umeng_socialize_sina"
             android:gravity="center"/>
     </com.zhy.autolayout.AutoLinearLayout>
 

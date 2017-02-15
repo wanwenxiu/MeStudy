@@ -8,6 +8,9 @@ import com.tencent.tinker.anno.DefaultLifeCycle;
 import com.tencent.tinker.lib.tinker.TinkerInstaller;
 import com.tencent.tinker.loader.app.ApplicationLike;
 import com.tencent.tinker.loader.shareutil.ShareConstants;
+import com.umeng.socialize.Config;
+import com.umeng.socialize.PlatformConfig;
+import com.umeng.socialize.UMShareAPI;
 
 /**
  * Created by yishangfei on 2016/11/3 0003.
@@ -20,6 +23,7 @@ import com.tencent.tinker.loader.shareutil.ShareConstants;
         flags = ShareConstants.TINKER_ENABLE_ALL,
         loadVerifyFlag = false)
 public class DemoApplicationLike extends ApplicationLike {
+    public UMShareAPI  mShareAPI;
     public DemoApplicationLike(Application application, int tinkerFlags, boolean tinkerLoadVerifyFlag, long applicationStartElapsedTime, long applicationStartMillisTime, Intent tinkerResultIntent) {
         super(application, tinkerFlags, tinkerLoadVerifyFlag, applicationStartElapsedTime, applicationStartMillisTime, tinkerResultIntent);
     }
@@ -34,5 +38,12 @@ public class DemoApplicationLike extends ApplicationLike {
         super.onCreate();
         //微信tinker
         TinkerInstaller.install(this);
+        //友盟
+        Config.DEBUG = true;
+        mShareAPI  = UMShareAPI.get(getApplication());
+        PlatformConfig.setWeixin("wx474645d31f239239", "71a35538363ef0b77417db4b54bafba6");
+        PlatformConfig.setSinaWeibo("2795050245", "f1477c63d28485be57bd64c03b6ff6bb");
+        PlatformConfig.setQQZone("1105723141", "6CI0p9aZ7uCzWrzJ");
+
     }
 }
