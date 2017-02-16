@@ -90,8 +90,6 @@ public class LoginView extends RelativeLayout {
     private int mDuration = 800;
     private final static String TAG = "LoginView";
 
-    public ArrayList<SnsPlatform> platforms = new ArrayList<SnsPlatform>();
-    private SHARE_MEDIA[] list = {SHARE_MEDIA.QQ, SHARE_MEDIA.SINA, SHARE_MEDIA.WEIXIN};
 
     public LoginView(Context context) {
         super(context);
@@ -129,8 +127,6 @@ public class LoginView extends RelativeLayout {
             }
         });
         LoginView.this.scrollTo(0, mScreenHeigh);
-
-        initPlatforms();
 
 //		ImageView btn_close = (ImageView)view.findViewById(R.id.btn_close);
 //		btn_close.setOnClickListener(new OnClickListener() {
@@ -319,14 +315,7 @@ public class LoginView extends RelativeLayout {
         }
     }
 
-    private void initPlatforms() {
-        platforms.clear();
-        for (SHARE_MEDIA e : list) {
-            if (!e.toString().equals(SHARE_MEDIA.GENERIC.toString())) {
-                platforms.add(e.toSnsPlatform());
-            }
-        }
-    }
+
 
     /**
      * 监听接口，来在主界面监听界面变化状态

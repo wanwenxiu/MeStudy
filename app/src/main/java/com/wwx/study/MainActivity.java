@@ -1,6 +1,7 @@
 package com.wwx.study;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -11,16 +12,21 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.afollestad.materialdialogs.simplelist.MaterialSimpleListAdapter;
+import com.afollestad.materialdialogs.simplelist.MaterialSimpleListItem;
 import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.bean.SHARE_MEDIA;
-import com.wwx.study.view.LoginView;
+import com.umeng.socialize.shareboard.SnsPlatform;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -36,14 +42,18 @@ public class MainActivity extends AppCompatActivity
     NavigationView navView;
     @BindView(R.id.drawer_layout)
     DrawerLayout drawer;
-    @BindView(R.id.mLoginView)
-    LoginView mLoginView;
+//    @BindView(R.id.mLoginView)
+//    LoginView mLoginView;
     @BindView(R.id.fab)
     FloatingActionButton fab;
     @BindView(R.id.recycleView)
     RecyclerView recycleView;
     @BindView(R.id.swipeRefresh)
     SwipeRefreshLayout swipeRefresh;
+
+    public ArrayList<SnsPlatform> platforms = new ArrayList<SnsPlatform>();
+    private SHARE_MEDIA[] list = { SHARE_MEDIA.WEIXIN,SHARE_MEDIA.QQ, SHARE_MEDIA.SINA};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,12 +69,14 @@ public class MainActivity extends AppCompatActivity
 
         navView.setNavigationItemSelectedListener(this);
 
-        mLoginView.setEnabled(true);
+//        mLoginView.setEnabled(true);
 
         swipeRefresh.setColorSchemeResources(android.R.color.holo_blue_bright,
                 android.R.color.holo_green_light, android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
         swipeRefresh.setOnRefreshListener(this);
+
+        initPlatforms();
 
         UMShareAPI.get(this).fetchAuthResultWithBundle(this, savedInstanceState, new UMAuthListener() {
             @Override
@@ -108,11 +120,38 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
-            if (mLoginView.isShow()) {
-                mLoginView.dismiss();
-            } else {
-                mLoginView.show();
-            }
+//            if (mLoginView.isShow()) {
+//                mLoginView.dismiss();
+//            } else {
+//                mLoginView.show();
+//            }
+            MaterialSimpleListAdapter adapter = new MaterialSimpleListAdapter(new MaterialSimpleListAdapter.Callback() {
+                @Override
+                public void onMaterialListItemSelected(MaterialDialog dialog, int index, MaterialSimpleListItem item) {
+                    initLogin(index);
+                }
+            });
+
+            adapter.add(new MaterialSimpleListItem.Builder(this)
+                    .content(R.string.weixinlogin)
+                    .icon(R.drawable.umeng_socialize_wechat)
+                    .backgroundColor(Color.WHITE)
+                    .build());
+            adapter.add(new MaterialSimpleListItem.Builder(this)
+                    .content(R.string.qqlogin)
+                    .icon(R.drawable.umeng_socialize_qq)
+                    .backgroundColor(Color.WHITE)
+                    .build());
+            adapter.add(new MaterialSimpleListItem.Builder(this)
+                    .content(R.string.weibologin)
+                    .icon(R.drawable.umeng_socialize_sina)
+                    .backgroundColor(Color.WHITE)
+                    .build());
+
+            new MaterialDialog.Builder(this)
+                    .title(R.string.login)
+                    .adapter(adapter, null)
+                    .show();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -152,6 +191,53 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    //配置第三方登录平台
+    private void initPlatforms() {
+        platforms.clear();
+        for (SHARE_MEDIA e : list) {
+            if (!e.toString().equals(SHARE_MEDIA.GENERIC.toString())) {
+                platforms.add(e.toSnsPlatform());
+            }
+        }
+    }
+
+    //调用第三方登录接口
+    private void initLogin(int index){
+        final boolean isauth = UMShareAPI.get(this).isAuthorize(this, platforms.get(index).mPlatform);
+        if (isauth) {
+            UMShareAPI.get(this).deleteOauth(this, platforms.get(index).mPlatform, authListener);
+        } else {
+            UMShareAPI.get(this).doOauthVerify(this, platforms.get(index).mPlatform, authListener);
+            UMShareAPI.get(MainActivity.this).getPlatformInfo(MainActivity.this, platforms.get(index).mPlatform, authListener);
+        }
+    }
+
+    UMAuthListener authListener = new UMAuthListener() {
+        @Override
+        public void onComplete(SHARE_MEDIA platform, int action, Map<String, String> data) {
+            Toast.makeText(MainActivity.this, "成功了", Toast.LENGTH_LONG).show();
+            if(data != null){
+                String temp = "";
+                for (String key : data.keySet()) {
+                    temp = temp + key + " : " + data.get(key) + "\n";
+                }
+                Log.d("geek", "onComplete: result="+temp);
+            }
+//            notifyDataSetChanged();
+        }
+
+        @Override
+        public void onError(SHARE_MEDIA platform, int action, Throwable t) {
+            Toast.makeText(MainActivity.this, "失败：" + t.getMessage(), Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        public void onCancel(SHARE_MEDIA platform, int action) {
+            Toast.makeText(MainActivity.this, "取消了", Toast.LENGTH_LONG).show();
+        }
+    };
+
+
     @Override
     public void onRefresh() {
 
@@ -160,15 +246,18 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        UMShareAPI.get(this).onActivityResult(requestCode,resultCode,data);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        UMShareAPI.get(this).release();
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+        UMShareAPI.get(this).onSaveInstanceState(outState);
     }
 }

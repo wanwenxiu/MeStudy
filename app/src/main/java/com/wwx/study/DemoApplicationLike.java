@@ -41,9 +41,8 @@ public class DemoApplicationLike extends ApplicationLike {
         //友盟
         Config.DEBUG = true;
         mShareAPI  = UMShareAPI.get(getApplication());
-        PlatformConfig.setWeixin("wx474645d31f239239", "71a35538363ef0b77417db4b54bafba6");
+        PlatformConfig.setWeixin("wxdc1e388c3822c80b", "3baf1193c85774b3fd9d18447d76cab0");
         PlatformConfig.setSinaWeibo("2795050245", "f1477c63d28485be57bd64c03b6ff6bb");
         PlatformConfig.setQQZone("1105723141", "6CI0p9aZ7uCzWrzJ");
-
     }
 }

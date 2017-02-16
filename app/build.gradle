@@ -75,4 +75,8 @@ dependencies {
     compile files('libs/umeng_social_shareboard.jar')
     compile files('libs/umeng_social_shareview.jar')
     compile files('libs/umeng_social_tool.jar')
+    //material dialog
+    compile 'com.afollestad.material-dialogs:core:0.9.3.0'
+    //material dialog 扩展
+    compile 'com.afollestad.material-dialogs:commons:0.9.3.0'
 }
