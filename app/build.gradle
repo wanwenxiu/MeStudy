@@ -79,4 +79,5 @@ dependencies {
     compile 'com.afollestad.material-dialogs:core:0.9.3.0'
     //material dialog 扩展
     compile 'com.afollestad.material-dialogs:commons:0.9.3.0'
+
 }

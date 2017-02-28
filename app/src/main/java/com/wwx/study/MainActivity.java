@@ -54,7 +54,6 @@ public class MainActivity extends AppCompatActivity
     public ArrayList<SnsPlatform> platforms = new ArrayList<SnsPlatform>();
     private SHARE_MEDIA[] list = { SHARE_MEDIA.WEIXIN,SHARE_MEDIA.QQ, SHARE_MEDIA.SINA};
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +68,7 @@ public class MainActivity extends AppCompatActivity
 
         navView.setNavigationItemSelectedListener(this);
 
-//        mLoginView.setEnabled(true);
+//      mLoginView.setEnabled(true);
 
         swipeRefresh.setColorSchemeResources(android.R.color.holo_blue_bright,
                 android.R.color.holo_green_light, android.R.color.holo_orange_light,
