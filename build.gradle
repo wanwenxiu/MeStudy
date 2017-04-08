@@ -5,7 +5,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.3'
+        classpath 'com.android.tools.build:gradle:2.3.1'
         //微信热修复
         classpath ('com.tencent.tinker:tinker-patch-gradle-plugin:1.7.7')
         //butterknife

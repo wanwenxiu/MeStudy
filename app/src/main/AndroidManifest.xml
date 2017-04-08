@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.wwx.study">
+    package="com.wwx.study"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
 
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
@@ -26,7 +28,8 @@
         android:icon="@mipmap/logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.NoActionBar">
+        android:theme="@style/AppTheme.NoActionBar"
+        tools:replace="Android:icon,android:theme">
         <activity
             android:name=".MainActivity"
             android:label="主界面"
@@ -50,7 +53,7 @@
         </meta-data>
 
         <activity
-            android:name="com.wxapi.WXEntryActivity"
+            android:name=".wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:screenOrientation="portrait"
@@ -81,6 +84,12 @@
             android:excludeFromRecents="true"/>
 
         <!--友盟end-->
+
+        <!--下拉回弹-->
+        <activity android:name=".ThreeActivty"></activity>
+        <activity android:name=".PullToZoomListActivity"></activity>
+        <activity android:name=".PullToZoomScrollActivity"></activity>
+        <activity android:name=".recyclerview.PullToZoomRecyclerActivity"></activity>
     </application>
 
 </manifest>

@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -42,8 +43,6 @@ public class MainActivity extends AppCompatActivity
     NavigationView navView;
     @BindView(R.id.drawer_layout)
     DrawerLayout drawer;
-//    @BindView(R.id.mLoginView)
-//    LoginView mLoginView;
     @BindView(R.id.fab)
     FloatingActionButton fab;
     @BindView(R.id.recycleView)
@@ -67,8 +66,6 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
 
         navView.setNavigationItemSelectedListener(this);
-
-//      mLoginView.setEnabled(true);
 
         swipeRefresh.setColorSchemeResources(android.R.color.holo_blue_bright,
                 android.R.color.holo_green_light, android.R.color.holo_orange_light,
@@ -119,11 +116,6 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
-//            if (mLoginView.isShow()) {
-//                mLoginView.dismiss();
-//            } else {
-//                mLoginView.show();
-//            }
             MaterialSimpleListAdapter adapter = new MaterialSimpleListAdapter(new MaterialSimpleListAdapter.Callback() {
                 @Override
                 public void onMaterialListItemSelected(MaterialDialog dialog, int index, MaterialSimpleListItem item) {
@@ -180,8 +172,13 @@ public class MainActivity extends AppCompatActivity
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.fab:
-//                 Snackbar.make(fab, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                .setAction("Action", null).show();
+                 Snackbar.make(fab, "测试scrollview", Snackbar.LENGTH_LONG)
+                .setAction("OK", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(MainActivity.this,ThreeActivty.class));
+                    }
+                }).show();
                 break;
             case R.id.recycleView:
                 break;
@@ -222,7 +219,6 @@ public class MainActivity extends AppCompatActivity
                 }
                 Log.d("geek", "onComplete: result="+temp);
             }
-//            notifyDataSetChanged();
         }
 
         @Override
