@@ -7,6 +7,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.wwx.study.recyclerview.PullToZoomRecyclerActivity;
+
 /**
  * 作者：wwx on 2017/4/7 0007 16:15
  * 邮箱：wanwenxiu0709@foxmail.com
@@ -37,7 +39,7 @@ public class ThreeActivty extends ActionBarActivity {
         findViewById(R.id.btn_recycler_view).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                startActivity(new Intent(ThreeActivty.this, PullToZoomRecyclerActivity.class));
+                startActivity(new Intent(ThreeActivty.this, PullToZoomRecyclerActivity.class));
             }
         });
     }

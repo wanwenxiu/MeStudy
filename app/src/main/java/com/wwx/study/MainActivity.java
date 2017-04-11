@@ -26,6 +26,7 @@ import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.shareboard.SnsPlatform;
+import com.wwx.study.recyclerview.PullToZoomRecyclerActivity;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -172,13 +173,14 @@ public class MainActivity extends AppCompatActivity
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.fab:
-                 Snackbar.make(fab, "测试scrollview", Snackbar.LENGTH_LONG)
-                .setAction("OK", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        startActivity(new Intent(MainActivity.this,ThreeActivty.class));
-                    }
-                }).show();
+//                 Snackbar.make(fab, "测试scrollview", Snackbar.LENGTH_LONG)
+//                .setAction("OK", new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        startActivity(new Intent(MainActivity.this,PullToZoomRecyclerActivity.class));
+//                    }
+//                }).show();
+                initLoginView();
                 break;
             case R.id.recycleView:
                 break;
@@ -218,6 +220,13 @@ public class MainActivity extends AppCompatActivity
                     temp = temp + key + " : " + data.get(key) + "\n";
                 }
                 Log.d("geek", "onComplete: result="+temp);
+                Snackbar.make(fab, "测试scrollview", Snackbar.LENGTH_LONG)
+                .setAction("OK", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(MainActivity.this,PullToZoomRecyclerActivity.class));
+                    }
+                }).show();
             }
         }
 
@@ -229,6 +238,7 @@ public class MainActivity extends AppCompatActivity
         @Override
         public void onCancel(SHARE_MEDIA platform, int action) {
             Toast.makeText(MainActivity.this, "取消了", Toast.LENGTH_LONG).show();
+
         }
     };
 
@@ -254,5 +264,35 @@ public class MainActivity extends AppCompatActivity
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         UMShareAPI.get(this).onSaveInstanceState(outState);
+    }
+
+    private void initLoginView(){
+        MaterialSimpleListAdapter adapter = new MaterialSimpleListAdapter(new MaterialSimpleListAdapter.Callback() {
+            @Override
+            public void onMaterialListItemSelected(MaterialDialog dialog, int index, MaterialSimpleListItem item) {
+                initLogin(index);
+            }
+        });
+
+        adapter.add(new MaterialSimpleListItem.Builder(this)
+                .content(R.string.weixinlogin)
+                .icon(R.drawable.umeng_socialize_wechat)
+                .backgroundColor(Color.WHITE)
+                .build());
+        adapter.add(new MaterialSimpleListItem.Builder(this)
+                .content(R.string.qqlogin)
+                .icon(R.drawable.umeng_socialize_qq)
+                .backgroundColor(Color.WHITE)
+                .build());
+        adapter.add(new MaterialSimpleListItem.Builder(this)
+                .content(R.string.weibologin)
+                .icon(R.drawable.umeng_socialize_sina)
+                .backgroundColor(Color.WHITE)
+                .build());
+
+        new MaterialDialog.Builder(this)
+                .title(R.string.login)
+                .adapter(adapter, null)
+                .show();
     }
 }
