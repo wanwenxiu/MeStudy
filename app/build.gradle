@@ -93,4 +93,5 @@ dependencies {
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.8.3'
     //自定义scrollview
     compile 'com.github.frank-zhu:pullzoomview:1.0.0'
+    compile 'cn.hugeterry.coordinatortablayout:coordinatortablayout:1.0.6'
 }

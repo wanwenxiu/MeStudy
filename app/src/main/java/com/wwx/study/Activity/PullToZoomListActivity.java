@@ -1,4 +1,4 @@
-package com.wwx.study;
+package com.wwx.study.Activity;
 
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
 import com.ecloud.pulltozoomview.PullToZoomListViewEx;
+import com.wwx.study.R;
 
 /**
  * Author:    ZhuWenWu

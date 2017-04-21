@@ -1,4 +1,4 @@
-package com.wwx.study;
+package com.wwx.study.Activity;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -26,6 +26,7 @@ import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.shareboard.SnsPlatform;
+import com.wwx.study.R;
 import com.wwx.study.recyclerview.PullToZoomRecyclerActivity;
 
 import java.util.ArrayList;
@@ -173,14 +174,13 @@ public class MainActivity extends AppCompatActivity
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.fab:
-//                 Snackbar.make(fab, "测试scrollview", Snackbar.LENGTH_LONG)
-//                .setAction("OK", new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        startActivity(new Intent(MainActivity.this,PullToZoomRecyclerActivity.class));
-//                    }
-//                }).show();
-                initLoginView();
+                 Snackbar.make(fab, "测试scrollview", Snackbar.LENGTH_LONG)
+                .setAction("OK", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(MainActivity.this,CoorDinaMainActivity.class));
+                    }
+                }).show();
                 break;
             case R.id.recycleView:
                 break;

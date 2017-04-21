@@ -1,4 +1,4 @@
-package com.wwx.study;
+package com.wwx.study.Activity;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.ecloud.pulltozoomview.PullToZoomScrollViewEx;
+import com.wwx.study.R;
 
 /**
  * Author:    ZhuWenWu

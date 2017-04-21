@@ -1,4 +1,4 @@
-package com.wwx.study;
+package com.wwx.study.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.wwx.study.R;
 import com.wwx.study.recyclerview.PullToZoomRecyclerActivity;
 
 /**

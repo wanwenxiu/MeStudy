@@ -1,4 +1,4 @@
-package com.wwx.study;
+package com.wwx.study.Activity;
 
 import android.content.Context;
 import android.content.res.TypedArray;

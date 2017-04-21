@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.TextView;
 
-import com.wwx.study.PullToZoomRecyclerViewEx;
+import com.wwx.study.Activity.PullToZoomRecyclerViewEx;
 import com.wwx.study.R;
 
 
