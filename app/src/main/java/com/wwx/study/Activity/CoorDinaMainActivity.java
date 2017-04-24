@@ -12,6 +12,7 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 
 import com.wwx.study.R;
+import com.wwx.study.adapter.MyPagerAdapter;
 
 import java.util.ArrayList;
 
@@ -27,7 +28,7 @@ public class CoorDinaMainActivity extends AppCompatActivity {
     private CoordinatorTabLayout mCoordinatorTabLayout;
     private int[] mImageArray, mColorArray;
     private ArrayList<Fragment> mFragments;
-    private final String[] mTitles = {"Android", "iOS", "前端", "拓展资源","Android", "iOS", "前端", "拓展资源"};
+    private final String[] mTitles = {"Android", "iOS", "前端"};
     private ViewPager mViewPager;
     private LinearLayout tvStop;
 
@@ -44,22 +45,14 @@ public class CoorDinaMainActivity extends AppCompatActivity {
         mImageArray = new int[]{
                 R.mipmap.bg_android,
                 R.mipmap.bg_ios,
-                R.mipmap.bg_js,
-                R.mipmap.bg_other,R.mipmap.bg_android,
-                R.mipmap.bg_ios,
-                R.mipmap.bg_js,
-                R.mipmap.bg_other};
+                R.mipmap.bg_js};
         mColorArray = new int[]{
                 android.R.color.holo_blue_light,
                 android.R.color.holo_red_light,
-                android.R.color.holo_orange_light,
-                android.R.color.holo_green_light,android.R.color.holo_blue_light,
-                android.R.color.holo_red_light,
-                android.R.color.holo_orange_light,
-                android.R.color.holo_green_light};
+                android.R.color.holo_orange_light};
 
         mCoordinatorTabLayout = (CoordinatorTabLayout) findViewById(R.id.coordinatortablayout);
-        mCoordinatorTabLayout.setTitle("wwx")
+        mCoordinatorTabLayout.setTitle("DEMO")
                 .setBackEnable(true)
                 .setImageArray(mImageArray, mColorArray)
                 .setupWithViewPager(mViewPager);

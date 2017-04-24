@@ -1,4 +1,4 @@
-package com.wwx.study.Activity;
+package com.wwx.study.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

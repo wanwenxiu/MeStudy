@@ -1,4 +1,4 @@
-package com.wwx.study.Activity;
+package com.wwx.study.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

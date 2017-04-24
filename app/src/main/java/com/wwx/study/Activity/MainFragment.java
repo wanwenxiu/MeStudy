@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.wwx.study.R;
+import com.wwx.study.adapter.RecyclerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
