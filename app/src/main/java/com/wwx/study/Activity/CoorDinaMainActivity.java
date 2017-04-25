@@ -2,15 +2,15 @@ package com.wwx.study.Activity;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.LinearLayout;
 
+import com.jaeger.library.StatusBarUtil;
 import com.wwx.study.R;
 import com.wwx.study.adapter.MyPagerAdapter;
 
@@ -35,10 +35,11 @@ public class CoorDinaMainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//        requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+//                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.coordina_main_layout);
+        StatusBarUtil.setColor(this, ContextCompat.getColor(this, R.color.color_9d9d9d));
         tvStop = (LinearLayout) findViewById(R.id.tvStop);
         initFragments();
         initViewPager();
