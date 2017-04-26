@@ -1,5 +1,6 @@
 package com.wwx.study.Activity;
 
+import android.Manifest;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.simplelist.MaterialSimpleListAdapter;
 import com.afollestad.materialdialogs.simplelist.MaterialSimpleListItem;
 import com.jaeger.library.StatusBarUtil;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.bean.SHARE_MEDIA;
@@ -56,6 +58,7 @@ public class MainActivity extends AppCompatActivity
 
     public ArrayList<SnsPlatform> platforms = new ArrayList<SnsPlatform>();
     private SHARE_MEDIA[] list = { SHARE_MEDIA.WEIXIN,SHARE_MEDIA.QQ, SHARE_MEDIA.SINA};
+    public RxPermissions rxPermissions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +99,8 @@ public class MainActivity extends AppCompatActivity
                 Toast.makeText(getApplicationContext(), "onRestoreInstanceState Authorize onCancel", Toast.LENGTH_SHORT).show();
             }
         });
+        //权限
+        RxPermissions rxPermissions = new RxPermissions(this);
 //        TinkerInstaller.onReceiveUpgradePatch(getApplicationContext(),
 //                Environment.getExternalStorageDirectory().getAbsolutePath() + "/patch_signed.apk");
     }
@@ -159,6 +164,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
+            rxPermissions.request(Manifest.permission.CAMERA);
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
