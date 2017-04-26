@@ -8,6 +8,8 @@
 * butterknife
 * 屏幕适配 com.zhy:autolayout:1.4.5
 * 友盟 
+* 透明状态栏
+* CoordinatorTabLayout+ViewPager
 
 
 **Weibo**
