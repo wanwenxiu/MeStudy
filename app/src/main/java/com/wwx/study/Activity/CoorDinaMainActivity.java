@@ -56,6 +56,7 @@ public class CoorDinaMainActivity extends AppCompatActivity {
         mCoordinatorTabLayout.setTitle("DEMO")
                 .setBackEnable(true)
                 .setImageArray(mImageArray, mColorArray)
+
                 .setupWithViewPager(mViewPager);
     }
 

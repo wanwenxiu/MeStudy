@@ -25,10 +25,4 @@
 
     </android.support.v4.widget.SwipeRefreshLayout>
 
-    <com.wwx.study.view.LoginView
-        android:id="@+id/mLoginView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        />
 </com.zhy.autolayout.AutoRelativeLayout>
