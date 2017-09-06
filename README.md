@@ -10,6 +10,8 @@
 * 友盟 
 * 透明状态栏
 * CoordinatorTabLayout+ViewPager
+* RxPermissions
+
 
 
 **Weibo**
