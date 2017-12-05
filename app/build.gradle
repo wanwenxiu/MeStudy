@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply plugin: 'android-apt'
+//apply plugin: 'android-apt'
 android {
 //    signingConfigs {
 //        release {
@@ -10,7 +10,7 @@ android {
 //        }
 //    }
     compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "com.wwx.study"
         minSdkVersion 16
@@ -59,7 +59,8 @@ dependencies {
     provided 'com.tencent.tinker:tinker-android-anno:1.7.7'
     //butterknife
     compile 'com.jakewharton:butterknife:8.4.0'
-    apt 'com.jakewharton:butterknife-compiler:8.4.0'
+//    apt 'com.jakewharton:butterknife-compiler:8.4.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
     //屏幕适配
     compile 'com.zhy:autolayout:1.4.5'
     //友盟
